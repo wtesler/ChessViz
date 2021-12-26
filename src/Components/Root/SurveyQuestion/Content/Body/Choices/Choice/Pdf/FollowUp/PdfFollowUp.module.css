@@ -1,0 +1,30 @@
+.outer {
+    width: 100%;
+    min-width: 325px;
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+}
+
+.button {
+    width: 100%;
+    max-width: 200px;
+    align-self: center;
+    justify-self: center;
+    padding: 10px 15px;
+    border-radius: 10px;
+    background-color: #1a53eb;
+    color: white;
+    user-select: none;
+    cursor: pointer;
+    text-align: center;
+    font-size: 18px;
+}
+
+@media (hover: hover) {
+    .button:hover {
+        filter: brightness(106%);
+    }
+}
+
+

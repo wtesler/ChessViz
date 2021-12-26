@@ -1,0 +1,76 @@
+.bodyOuter {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: 0 25px 40px 25px;
+}
+
+.body {
+    width: 100%;
+    max-width: 1300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-grow: 1;
+}
+
+.header {
+    width: 100%;
+    text-align: center;
+    padding: 15px 0;
+    font-size: 18px;
+}
+
+.itemsContainer {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.addItemOuter {
+    width: 100%;
+    display: flex;
+    cursor: pointer;
+    margin-bottom: 10px;
+    user-select: none;
+    z-index: 0;
+}
+
+.addItemInner {
+    width: 100%;
+    padding: 15px 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(3px) brightness(60%);
+    border: 1px solid white;
+}
+
+@media (hover: hover) {
+    .addItemInner:hover {
+        backdrop-filter: blur(3px) brightness(50%);
+    }
+}
+
+.addItemTitle {
+    text-align: center;
+    color: white;
+}
+
+.addItemIcon {
+    width: 20px;
+    filter: hue-rotate(130deg);
+    margin-left: 10px;
+}
+
+.saveButtonContainer {
+    position: fixed;
+    top: 25px;
+    right: 25px;
+    z-index: 98;
+}

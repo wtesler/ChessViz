@@ -1,0 +1,115 @@
+.outer {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin-top: 40px;
+}
+
+.header {
+    width: 100%;
+    color: #000000;
+    padding: 15px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    text-decoration: underline;
+}
+
+.toggleOuter {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.toggleButtonOuter {
+    padding: 2vw;
+}
+
+.toggleButton {
+    border: 1px solid black;
+    border-radius: 13px;
+    padding: 10px 15px;
+    cursor: pointer;
+    color: black;
+    user-select: none;
+}
+
+.toggleReject {
+
+}
+
+.toggleAccept {
+
+}
+
+.toggleSelected {
+    color: white;
+    cursor: unset;
+}
+
+.toggleReject.toggleSelected {
+    background-color: #d25555;
+}
+
+.toggleAccept.toggleSelected {
+    background-color: #05bf54;
+}
+
+.notesInputOuter {
+    margin-top: 10px;
+}
+
+.notesInput {
+    margin-top: 0 !important;
+}
+
+.notesInputText {
+    border: 1px solid black;
+    margin-top: 0 !important;
+    resize: vertical !important;
+    font-size: 17px !important;
+}
+
+.notesInputTitle {
+    font-size: 17px !important;
+}
+
+.othersContainer {
+}
+
+.otherOuter {
+    color: black;
+    font-size: 17px;
+    margin-top: 30px;
+}
+
+.otherTitle {
+
+}
+
+.otherStatus {
+    margin-left: 5px;
+}
+
+.otherStatusAccepted {
+    color: #059642;
+}
+
+.otherStatusRejected {
+    color: #d25555;
+}
+
+.otherDivider {
+    width: 60%;
+    max-width: 600px;
+    height: 1px;
+    background-color: #535353;
+    margin: 10px 0;
+}
+
+.otherNote {
+
+}

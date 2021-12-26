@@ -1,0 +1,45 @@
+.outer {
+    width: 100%;
+    display: flex;
+    cursor: pointer;
+    margin-bottom: 10px;
+    position: relative;
+}
+
+.inner {
+    width: 100%;
+    padding: 15px 0;
+    display: flex;
+    flex-direction: row;
+    border-radius: 10px;
+    position: relative;
+    overflow: hidden;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(3px) brightness(60%);
+}
+
+@media (hover: hover) {
+    .inner:hover {
+        backdrop-filter: blur(3px) brightness(50%);
+    }
+}
+
+.number {
+    position: absolute;
+    left: 2vw;
+    color: white;
+    font-weight: 500;
+}
+
+.titleOuter {
+    text-align: center;
+    color: white;
+    max-width: 30%;
+}
+
+.editIcon {
+    width: 20px;
+    filter: grayscale(100%) brightness(1000%);
+    margin-left: 10px;
+}

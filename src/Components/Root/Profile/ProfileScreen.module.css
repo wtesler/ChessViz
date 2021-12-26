@@ -1,0 +1,107 @@
+.main {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.titleClass {
+    max-width: 1000px;
+    padding: 0 25px !important;
+}
+
+.bodyOuter {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.body {
+    width: 100%;
+    max-width: 1000px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /*background-color: white;*/
+    margin-bottom: 40px;
+    padding: 0 25px;
+    border-radius: 2px;
+}
+
+.bodyInner {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-grow: 1;
+}
+
+.bodyHeader {
+    width: 100%;
+    font-size: 23px;
+    margin-bottom: 10px;
+    font-weight: 500;
+    color: #ffffff;
+}
+
+.bodySection {
+    width: 100%;
+    display: flex;
+}
+
+.bodySectionInputs {
+    flex: 1 0;
+}
+
+.bodySectionImage {
+    margin-left: 40px;
+    flex: 0 0 220px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.saveButtonContainer1 {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    margin-top: 20px;
+}
+
+.saveButtonContainer2 {
+    width: 100%;
+    flex-direction: row;
+    justify-content: flex-end;
+    margin-top: 20px;
+    display: none;
+}
+
+@media screen and (max-width: 700px) {
+    .bodySection {
+        flex-direction: column;
+    }
+
+    .bodySectionImage {
+        justify-content: flex-start;
+        margin-left: 0;
+    }
+
+    .saveButtonContainer1 {
+        display: none;
+    }
+
+    .saveButtonContainer2 {
+        display: flex;
+    }
+}
+
+.inputTitle {
+    color: #efefef !important;
+}
+
+.inputDropdownTitle {
+    color: #efefef !important;
+    font-weight: 400 !important;
+}

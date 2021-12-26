@@ -1,0 +1,17 @@
+.outer {
+    width: 365px;
+    min-height: 210px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    border-radius: 19px;
+    margin: 10px;
+    color: var(--theme-dark-blue);
+}
+
+@media screen and (max-width: 1000px) {
+    .outer {
+        margin: 10px 25px;
+    }
+}

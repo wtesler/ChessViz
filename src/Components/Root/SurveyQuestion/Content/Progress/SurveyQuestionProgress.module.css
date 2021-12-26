@@ -1,0 +1,42 @@
+.progressOuter {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.progressStatusCompletion {
+    font-weight: 600;
+}
+
+.progressStatus {
+}
+
+.progressBarOuter {
+    width: 100%;
+    max-width: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.progressBarText {
+    margin-top: -4px;
+    margin-bottom: 2px;
+    font-weight: 600;
+}
+
+.progressBar {
+    width: 100%;
+    height: 15px;
+    position: relative;
+    background-color: #C4C4C4;
+}
+
+.progressBarFill {
+    height: 100%;
+    position: absolute;
+    top: 0;
+    background-color: #1E8A6B;
+}

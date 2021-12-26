@@ -1,0 +1,40 @@
+.outer {
+  width: 100%;
+  height: 100%;
+}
+
+.logo {
+  width: 250px;
+  position: absolute;
+  top: 25%;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+
+.explanation {
+  position: absolute;
+  top: 40%;
+  font-size: 1.5em;
+  font-weight: 700;
+  left: 0;
+  right: 0;
+  margin: auto;
+  text-align: center;
+  color: #ffffff;
+  letter-spacing: .5px;
+}
+
+.homeButton {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto;
+  top: 55%;
+}
+
+@media (hover: hover) {
+  .homeButton:hover {
+    background-color: #1a53eb;
+  }
+}

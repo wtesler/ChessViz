@@ -1,0 +1,16 @@
+.main {
+    margin-top: 2px;
+    margin-left: 25px;
+    cursor: pointer;
+    opacity: .9;
+}
+
+@media (hover: hover) {
+    .main:hover {
+        opacity: .7;
+    }
+}
+
+.icon {
+    width: 20px;
+}

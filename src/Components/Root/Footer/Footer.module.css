@@ -1,0 +1,135 @@
+.outer {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    margin-top: auto;
+    padding: 35px 50px;
+    /*background-color: #263069;*/
+
+    --footer_part_second_width: 45%;
+    --footer_part_third_left_margin: calc(var(--footer_part_second_width) / 3);
+}
+
+.partFirst {
+    width: 40%;
+    display: flex;
+    flex-direction: row;
+    color: white;
+    font-size: 12px;
+}
+
+.partSecond {
+    width: var(--footer_part_second_width);
+    display: flex;
+    flex: 1;
+    flex-direction: row;
+}
+
+.partThird {
+    width: 15%;
+    display: flex;
+}
+
+.partHeader {
+    color: #ffffff99;
+    font-size: 12px;
+    margin-bottom: 10px;
+    padding: 0 10px 0 0;
+}
+
+.partFirstImage {
+    width: 60px;
+}
+
+.partFirstTextContent {
+    display: flex;
+    flex-direction: column;
+    margin: 0 30px;
+}
+
+.partFirstLine {
+    width: 150px;
+    height: 1px;
+    background-color: white;
+    margin: 10px 0;
+}
+
+.partSecondColumn {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.partSecondItem {
+    margin-bottom: 10px;
+    font-size: 12px;
+    line-height: 28px;
+}
+
+.partSecondItem a {
+    text-decoration: none;
+    color: white;
+}
+
+@media (hover: hover) {
+    .partSecondItem a:hover {
+        color: #f15b2a;
+    }
+}
+
+.partThirdColumn {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-left: var(--footer_part_third_left_margin);
+}
+
+.partHeaderThird {
+    align-self: center !important;
+}
+
+.partThirdItem {
+    margin-bottom: 20px;
+}
+
+.partThirdItem a {
+    text-decoration: none;
+    color: white;
+}
+
+.partThirdItem img {
+    width: 24px;
+}
+
+@media (hover: hover) {
+    .partThirdItem a:hover {
+        color: #f15b2a;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .outer {
+        flex-direction: column;
+        padding: 35px 20px;
+    }
+
+    .part {
+        width: 100% !important;
+    }
+
+    .part:not(:first-child) {
+        margin-top: 20px;
+    }
+
+    .partThirdColumn {
+        flex-direction: row;
+        margin-left: unset;
+        flex: 1;
+    }
+
+    .partThirdItem {
+        flex: 1;
+        text-align: center;
+    }
+}

@@ -1,0 +1,69 @@
+.outer {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: center;
+    background-color: white;
+    border-radius: 13px;
+    margin-top: 20px;
+    padding: 20px;
+    animation: survey_screen_submit_wiggle 3s 300ms;
+}
+
+.text {
+    margin-right: 20px;
+    color: black;
+    font-size: 18px;
+}
+
+.button {
+    width: 100%;
+    max-width: 150px;
+    align-self: center;
+    justify-self: center;
+    padding: 10px 15px;
+    border-radius: 10px;
+    background-color: #af2533;
+    color: white;
+    user-select: none;
+    cursor: pointer;
+    text-align: center;
+    font-size: 18px;
+    transition: transform .5s;
+}
+
+@media (hover: hover) {
+    .button:hover {
+        filter: brightness(105%);
+        transform: scale(1.03);
+    }
+}
+
+@keyframes survey_screen_submit_wiggle {
+    5%,
+    50% {
+        transform: scale(1);
+    }
+    10% {
+        transform: scale(0.95);
+    }
+    15% {
+        transform: scale(1.01);
+    }
+    20% {
+        transform: scale(1.02) rotate(-2deg);
+    }
+    25% {
+        transform: scale(1.02) rotate(2deg);
+    }
+    30% {
+        transform: scale(1.02) rotate(-1deg);
+    }
+    35% {
+        transform: scale(1.02) rotate(.5deg);
+    }
+    40% {
+        transform: scale(1.02) rotate(0);
+    }
+}

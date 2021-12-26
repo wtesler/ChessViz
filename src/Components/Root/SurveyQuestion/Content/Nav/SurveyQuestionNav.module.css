@@ -1,0 +1,49 @@
+.outer {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    background-color: #EFEFEF;
+    padding: 3.5%;
+    border-radius: 0 0 13px 13px;
+    margin-top: 20px;
+    overflow: hidden;
+}
+
+.part {
+    width: 33%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: transform .5s;
+}
+
+@media (hover: hover) {
+    .part:hover {
+        transform: scale(1.03);
+    }
+}
+
+.partImageOuter {
+    width: 30px;
+}
+
+.partImage {
+
+}
+
+.partImageText {
+    font-size: 18px;
+    margin-top: 4px;
+}
+
+@media screen and (max-width: 650px) {
+    .partImageOuter {
+        width: 20px;
+    }
+
+    .partImageText {
+        font-size: 12px;
+    }
+}

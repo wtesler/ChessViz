@@ -1,0 +1,27 @@
+.outer {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+}
+
+.image {
+    width: 110px;
+    padding: 0 40px;
+    cursor: pointer;
+    opacity: .3;
+}
+
+@media (hover: hover) {
+    .image:hover {
+        opacity: .5;
+    }
+}
+
+.imageBackward {
+    transform: rotateZ(180deg);
+}
+
+.imageForward {
+}
