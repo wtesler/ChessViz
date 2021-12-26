@@ -1,19 +1,4 @@
 export const ROUTE_LANDING = "/";
-export const ROUTE_DASHBOARD = "/dashboard";
-export const ROUTE_PROFILE = "/profile";
-export const ROUTE_SURVEY = "/survey";
-export const ROUTE_DOCUMENTS = "/documents";
-export const ROUTE_CMS = "/cms";
-export const ROUTE_REGISTER = "/register";
-export const ROUTE_ROLES = "/roles";
-export const ROUTE_SURVEY_EDIT = "/surveyEdit";
-export const ROUTE_SURVEY_EDIT_SECTION = "/surveyEditSection";
-export const ROUTE_NEWSLETTER_SUCCESS = "/newsletterSuccess";
-export const ROUTE_SPREADSHEET = "/spreadsheet";
-export const ROUTE_ORGS = "/orgs";
-export const ROUTE_ORG = "/org";
-export const ROUTE_WORKERS = "/workers";
+export const ROUTE_MAIN = "/analysis";
 export const ROUTE_INDEX = "/index.html";
 export const ROUTE_NOT_FOUND = "/404";
-
-export const ABSOLUTE_HOME = "https://mivie.com";

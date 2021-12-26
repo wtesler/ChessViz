@@ -90,7 +90,7 @@ export default class ImageCompressor {
 
       canvas.canvas.toBlob(
         blob => {
-          let objectUrl = null;
+          let objectUrl;
           if (blob.size < fileSizeBytes || forceCompress) {
             objectUrl = URL.createObjectURL(blob);
           } else {
