@@ -1,0 +1,23 @@
+.outer{
+    width: 100%;
+    height: 100%;
+}
+
+.inner {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+
+.square{
+    width: calc(100% / 8);
+    height: calc(100% / 8);
+}
+
+.square_white{
+    background-color: white;
+}
+
+.square_black{
+    background-color: black;
+}

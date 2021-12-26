@@ -4,13 +4,13 @@ import {withModule} from "react-hoc-di";
 import { useMemo} from "react";
 import MainModule from "./Module/MainModule";
 import ThemedBackground from "../Theme/Background/ThemedBackground";
-import {HELLO_MESSAGE} from "../../../Constants/i18n";
+import ChessBoard from "../ChessBoard/ChessBoard";
 
 const MainScreen = () => {
   const bodyContent = useMemo(() => {
     return (
       <div className={s.body}>
-        {HELLO_MESSAGE}
+        <ChessBoard/>
       </div>
     );
   }, []);
