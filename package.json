@@ -9,7 +9,7 @@
     "eject": "react-scripts eject"
   },
   "dependencies": {
-    "abstract-data-manager": "1.0.0",
+    "abstract-data-manager": "1.0.1",
     "firebase": "9.0.2",
     "query-string": "7.0.1",
     "react": "^17.0.2",
