@@ -7,7 +7,7 @@ import {Requests} from "../Lifecycles/shared/Requests";
  * Call `setParams(username, month, year)` to configure manager.
  *
  * Then call `update` to trigger a fetch.
- * 
+ *
  * Currently only works with chess.com.
  */
 export default class PlayerGamesManager extends AbstractDataManager {
@@ -17,9 +17,7 @@ export default class PlayerGamesManager extends AbstractDataManager {
     this.chessDotComClient = chessDotComClient;
     this.requests = new Requests();
 
-    this.username = '';
-    this.month = -1;
-    this.year = -1;
+    this._resetParams();
   }
 
   // Overriden from super
@@ -38,9 +36,7 @@ export default class PlayerGamesManager extends AbstractDataManager {
   // Overriden from super
   destruct() {
     super.destruct();
-    this.username = '';
-    this.month = -1;
-    this.year = -1;
+    this._resetParams();
   }
 
   /**
@@ -58,5 +54,11 @@ export default class PlayerGamesManager extends AbstractDataManager {
     this.month = month;
     this.year = year;
     return super.update(null, true);
+  }
+
+  _resetParams() {
+    this.username = '';
+    this.month = -1;
+    this.year = -1;
   }
 }
