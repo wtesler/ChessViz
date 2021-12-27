@@ -41,20 +41,23 @@ const ChessBoard = () => {
       const columns = [];
 
       for (let j = 0; j < 8; j++) {
-        const isEvenRow = i % 2 === 0;
-        const isEvenCol = j % 2 === 0;
-        let colorClass = (isEvenRow && isEvenCol) || (!isEvenRow && !isEvenCol)
-            ? s.square_white
-            : s.square_black;
+        const evenX = i % 2 === 0;
+        const evenY = j % 2 === 0;
+        let colorClass = (evenX && evenY) || (!evenX && !evenY)
+            ? s.square_black
+            : s.square_white;
+
+        const key = `${i},${j}`;
 
         const square = (
-          <div className={`${s.square} ${colorClass}`} key={`${i},${j}`}/>
+          <div className={`${key} ${s.square} ${colorClass}`} key={key}/>
         );
 
         columns.push(square);
       }
       squares.push(columns);
     }
+
     return (
       <div className={s.squares} style={{width: length, height: length}}>
         {squares}

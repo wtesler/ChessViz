@@ -3,9 +3,9 @@ export let HOME = 'Home';
 export let PAGE_NOT_FOUND = 'Page not found';
 
 function localize(code) {
-  if (code.startsWith('zh')) {
+  if (code.startsWith('zh')) { // Chinese
 
-  } else if (code.startsWith('es')) {
+  } else if (code.startsWith('es')) { // Spanish
 
   }
 }
