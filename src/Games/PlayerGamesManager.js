@@ -3,6 +3,12 @@ import {Requests} from "../Lifecycles/shared/Requests";
 
 /**
  * Provides an interface for getting player games data.
+ *
+ * Call `setParams(username, month, year)` to configure manager.
+ *
+ * Then call `update` to trigger a fetch.
+ * 
+ * Currently only works with chess.com.
  */
 export default class PlayerGamesManager extends AbstractDataManager {
 
@@ -12,14 +18,14 @@ export default class PlayerGamesManager extends AbstractDataManager {
     this.requests = new Requests();
 
     this.username = '';
-    this.month = 0;
-    this.year = 0;
+    this.month = -1;
+    this.year = -1;
   }
 
   // Overriden from super
   async getData() {
-    if (!this.username) {
-      throw new Error("You must call `setParams` before trying to get data");
+    if (!this.username || this.month < 0 || this.year < 0) {
+      throw new Error("You must call `setParams` with valid values before trying to get data");
     }
     return this.chessDotComClient.readPlayerPgns(this.username, this.month, this.year, this.requests);
   }
@@ -32,9 +38,9 @@ export default class PlayerGamesManager extends AbstractDataManager {
   // Overriden from super
   destruct() {
     super.destruct();
-    this.username = "";
-    this.month = 0;
-    this.year = 0;
+    this.username = '';
+    this.month = -1;
+    this.year = -1;
   }
 
   /**
