@@ -1,16 +1,19 @@
-import ChessPlayerPgnsManager from "../../../../Games/ChessPlayerPgnsManager";
+import PlayerGamesManager from "../../../../Games/PlayerGamesManager";
+import ChessDotComClient from "../../../../APIs/ChessDotComClient";
 
 const MainModule = (rootModule) => {
-  const playerPgnsManager = new ChessPlayerPgnsManager();
+  const chessDotComClient = new ChessDotComClient();
+  const playerGamesManager = new PlayerGamesManager(chessDotComClient);
 
   const module = {
-    playerPgnsManager: playerPgnsManager
+    playerGamesManager: playerGamesManager
   };
 
   return [
     module,
     () => {
-      playerPgnsManager.destruct();
+      chessDotComClient.destruct();
+      playerGamesManager.destruct();
     }
   ]
 }

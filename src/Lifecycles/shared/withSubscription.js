@@ -26,7 +26,7 @@ export default function withSubscription(WrappedComponent) {
 
     componentWillUnmount() {
       this.state.subscription.unsubscribe();
-      this.state.requests.unmount();
+      this.state.requests.abort();
     }
 
     render() {

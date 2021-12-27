@@ -5,6 +5,7 @@ import { useMemo} from "react";
 import MainModule from "./Module/MainModule";
 import ThemedBackground from "../Theme/Background/ThemedBackground";
 import ChessBoard from "../ChessBoard/ChessBoard";
+// import TestApi from "../TestApi/TestChessDotComApi";
 
 const MainScreen = () => {
   const bodyContent = useMemo(() => {
@@ -19,6 +20,7 @@ const MainScreen = () => {
     <div className={s.outer}>
       <ThemedBackground/>
       {bodyContent}
+      {/*<TestApi />*/}
     </div>
   );
 }
