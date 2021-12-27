@@ -12,23 +12,23 @@ const TestChessDotComApi = props => {
   const {module} = props;
   const {playerGamesManager} = module;
 
-  const onPlayerPgns = useCallback(playerPgns => {
-    console.log(playerPgns);
+  const onGames = useCallback(games => {
+    console.log(games);
   }, []);
 
   useEffect(() => {
-    playerGamesManager.addListener(onPlayerPgns);
+    playerGamesManager.addListener(onGames);
     return () => {
-      playerGamesManager.removeListener(onPlayerPgns);
+      playerGamesManager.removeListener(onGames);
     }
-  }, [playerGamesManager, onPlayerPgns]);
+  }, [playerGamesManager, onGames]);
 
-  const fetchPgns = useCallback(async () => {
-    await playerGamesManager.setParams(USERNAME, MONTH, YEAR);
+  const fetchGames = useCallback(async () => {
+    await playerGamesManager.fetch(USERNAME, MONTH, YEAR);
   }, [playerGamesManager]);
 
   useEffect(() => {
-    fetchPgns();
+    fetchGames();
     // eslint-disable-next-line
   }, []);
 
