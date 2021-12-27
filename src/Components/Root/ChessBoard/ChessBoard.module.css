@@ -5,7 +5,7 @@
     flex-grow: 1;
 }
 
-.inner {
+.squares {
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
