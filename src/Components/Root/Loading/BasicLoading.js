@@ -1,6 +1,10 @@
 import s from './BasicLoading.module.css';
 import {useEffect, useState} from "react";
 
+/**
+ * Shows a basic loading spinner. See props for customization.
+ * @param props Parameters of customization.
+ */
 const BasicLoading = props => {
   const {className, baseColor, highlightColor, size, thickness, delayMs} = props;
 

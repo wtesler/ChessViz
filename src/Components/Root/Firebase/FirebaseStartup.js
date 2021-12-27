@@ -1,6 +1,9 @@
 import {useEffect} from 'react';
 import {initializeApp} from 'firebase/app';
 
+/**
+ * Provides access to Firebase resources if they are needed.
+ */
 const FirebaseStartup = () => {
 
   useEffect(() => {
