@@ -38,9 +38,23 @@ export default class PlayerGamesManager extends AbstractDataManager {
     if (!this.username || this.month < 0 || this.year < 0) {
       throw new Error("You must call `setParams` with valid values before trying to get data");
     }
-    const playerPgns = this.chessDotComClient.readPlayerPgns(this.username, this.month, this.year, this.requests);
+    const playerGames = this.chessDotComClient.readPlayerPgns(this.username, this.month, this.year, this.requests);
+    //loop through each game and parse the pgn into an object
+    //maybe meta data as its own object
+    //parse moves into a moveslist
+    this.parsePgns(playerGames);
+    return playerGames;
+  }
 
-    return playerPgns;
+  parsePgns(playerGames) {
+    for (const game of playerGames) {
+      const pgn = game.pgn;
+      const parsedPgn = {
+        meta: {},
+        moves: []
+      };
+      game.parsedPgn = parsedPgn;
+    }
   }
 
   // Overriden from super
