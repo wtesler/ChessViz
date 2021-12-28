@@ -1,0 +1,4 @@
+.outer {
+    width: calc(100% / 8);
+    height: calc(100% / 8);
+}

@@ -1,5 +1,6 @@
 import s from './ChessBoard.module.css';
 import {useCallback, useEffect, useMemo, useRef, useState} from "react";
+import Square from "./Square/Square";
 
 /**
  * Constructs a square of squares.
@@ -34,25 +35,16 @@ const ChessBoard = () => {
     }
   }, [onResize]);
 
+  /**
+   * Create a 2D List of Squares.
+   */
   const squaresElement = useMemo(() => {
     const squares = [];
-
-    for (let i = 0; i < 8; i++) {
+    for (let c = 0; c < 8; c++) {
       const columns = [];
-
-      for (let j = 0; j < 8; j++) {
-        const evenX = i % 2 === 0;
-        const evenY = j % 2 === 0;
-        let colorClass = (evenX && evenY) || (!evenX && !evenY)
-            ? s.square_black
-            : s.square_white;
-
-        const key = `${i},${j}`;
-
-        const square = (
-          <div className={`${key} ${s.square} ${colorClass}`} key={key}/>
-        );
-
+      for (let r = 0; r < 8; r++) {
+        const key = `${c},${r}`;
+        const square = <Square col={c} row={r} key={key} />
         columns.push(square);
       }
       squares.push(columns);

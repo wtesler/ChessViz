@@ -10,11 +10,9 @@ A tool to visualize positional control throughout a chess match.
 
 `npm run start`
 
-### Building
+### Publishing
 
 `npm run build`
-
-### Publishing
 
 **Ensure you build first!**
 

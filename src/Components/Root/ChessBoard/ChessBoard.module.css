@@ -12,16 +12,3 @@
     flex-wrap: wrap;
     flex-direction: column-reverse;
 }
-
-.square{
-    width: calc(100% / 8);
-    height: calc(100% / 8);
-}
-
-.square_white{
-    background-color: white;
-}
-
-.square_black{
-    background-color: black;
-}
