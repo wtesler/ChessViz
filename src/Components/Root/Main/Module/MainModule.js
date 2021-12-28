@@ -1,12 +1,15 @@
 import PlayerGamesManager from "../../../../Games/PlayerGamesManager";
 import ChessDotComClient from "../../../../APIs/ChessDotComClient";
+import GameManager from "../../../../Game/GameManager";
 
 const MainModule = (rootModule) => {
   const chessDotComClient = new ChessDotComClient();
   const playerGamesManager = new PlayerGamesManager(chessDotComClient);
+  const gameManager = new GameManager();
 
   const module = {
-    playerGamesManager: playerGamesManager
+    playerGamesManager: playerGamesManager,
+    gameManager: gameManager
   };
 
   return [
