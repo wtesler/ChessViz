@@ -38,7 +38,9 @@ export default class PlayerGamesManager extends AbstractDataManager {
     if (!this.username || this.month < 0 || this.year < 0) {
       throw new Error("You must call `setParams` with valid values before trying to get data");
     }
-    return this.chessDotComClient.readPlayerPgns(this.username, this.month, this.year, this.requests);
+    const playerPgns = this.chessDotComClient.readPlayerPgns(this.username, this.month, this.year, this.requests);
+
+    return playerPgns;
   }
 
   // Overriden from super
