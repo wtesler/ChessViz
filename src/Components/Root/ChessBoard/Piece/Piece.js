@@ -1,19 +1,17 @@
 import s from './Piece.module.css';
-import { useMemo} from "react";
+import {useMemo} from "react";
 import {withModule} from "react-hoc-di";
 
 const Piece = props => {
-  const {col, row, module} = props;
-  const {gameManager} = module;
+  const {piece} = props;
 
   const content = useMemo(() => {
-    const squareState = gameManager.getSquareState(col, row);
-    if (squareState.piece === 'pawn') {
+    if (piece === 'pawn') {
       return <div className={s.pawn}/>
     } else {
       return null;
     }
-  }, [col, row, gameManager]);
+  }, [piece]);
 
   return content;
 }

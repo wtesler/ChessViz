@@ -1,18 +1,18 @@
 import s from './Square.module.css';
-import { useMemo} from "react";
+import {useMemo} from "react";
 import {withModule} from "react-hoc-di";
 import Piece from "../Piece/Piece";
 
 const Square = props => {
-  const {col, row} = props;
-  //const {gameManager} = module;
+  const {col, row, module} = props;
+  const {gameManager} = module;
 
   const defaultColor = useMemo(() => {
     const evenX = col % 2 === 0;
     const evenY = row % 2 === 0;
     let colorString = (evenX && evenY) || (!evenX && !evenY)
-        ? "#000000"
-        : "#FFFFFF";
+      ? "#000000"
+      : "#FFFFFF";
 
     return colorString;
   }, [col, row]);
@@ -28,8 +28,13 @@ const Square = props => {
   }, [color]);
 
   const pieceElement = useMemo(() => {
-    return <Piece col={col} row={row}/>
-  }, [col, row]);
+    const squareState = gameManager.getSquareState(col, row);
+    const piece = squareState.piece;
+    if (!piece) {
+      return null;
+    }
+    return <Piece piece={piece}/>
+  }, [col, row, gameManager]);
 
   return (
     <div className={s.outer} style={style}>
