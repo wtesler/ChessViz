@@ -46,10 +46,23 @@ export default class PlayerGamesManager extends AbstractDataManager {
   parsePgns(playerGames) {
     for (const game of playerGames) {
       const pgn = game.pgn;
+      const splitPgn = pgn.split('\n');
+      let movesList = [];
       const parsedPgn = {
         meta: {},
         moves: []
       };
+      for (const line of splitPgn){
+        if (line[0] === '[')
+          parsedPgn.meta += line;
+        else if (line[0] === '1')
+          movesList = line.split('}');
+      }
+      for (const move in movesList) {
+        const cleanMove = movesList[move].replace(/{(.*?)]/,'');
+        parsedPgn.moves.push(cleanMove);
+      }
+      //console.log(parsedPgn.moves)
       game.parsedPgn = parsedPgn;
     }
   }
