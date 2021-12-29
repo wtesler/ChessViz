@@ -49,20 +49,27 @@ export default class PlayerGamesManager extends AbstractDataManager {
       const splitPgn = pgn.split('\n');
       let movesList = [];
       const parsedPgn = {
-        meta: {},
+        meta: {event:"", site:"", date:"", round:"",
+               WUser:"", BUser:"", result:"", curr_pos:"", timeZone:"",
+               eco:"", ecoUrl:"", UTCDate:"", UTCTime:"", whiteElo:"",
+               blackElo:"", timeControl:"", termination:"", startTime:"",
+               endDate:"", endTime:"", link:""},
         moves: []
       };
       for (const line of splitPgn){
         if (line[0] === '[')
-          parsedPgn.meta += line;
-        else if (line[0] === '1')
+          parsedPgn.meta[0] = line.substring(
+          line.indexOf('"') + 1,
+          line.lastIndexOf('"')
+        );
+        if (line[0] === '1')
           movesList = line.split('}');
       }
       for (const move in movesList) {
         const cleanMove = movesList[move].replace(/{(.*?)]/,'');
         parsedPgn.moves.push(cleanMove);
       }
-      //console.log(parsedPgn.moves)
+      console.log(parsedPgn.meta)
       game.parsedPgn = parsedPgn;
     }
   }
