@@ -1,11 +1,24 @@
 import s from './Square.module.css';
-import {useMemo} from "react";
+import {useCallback, useEffect, useMemo, useState} from "react";
 import {withModule} from "react-hoc-di";
 import Piece from "../Piece/Piece";
 
 const Square = props => {
   const {col, row, module} = props;
   const {gameManager} = module;
+
+  const [squareState, setSquareState] = useState();
+
+  const onBoardStateUpdate = useCallback(boardState => {
+    setSquareState(boardState[col][row]);
+  }, [col, row]);
+
+  useEffect(() => {
+    gameManager.addListener(onBoardStateUpdate);
+    return () => {
+      gameManager.removeListener(onBoardStateUpdate);
+    };
+  }, [gameManager, onBoardStateUpdate])
 
   const defaultColor = useMemo(() => {
     const evenX = col % 2 === 0;
@@ -28,13 +41,16 @@ const Square = props => {
   }, [color]);
 
   const pieceElement = useMemo(() => {
-    const squareState = gameManager.getSquareState(col, row);
+    if (!squareState) {
+      return;
+    }
+    
     const piece = squareState.piece;
     if (!piece) {
       return null;
     }
     return <Piece piece={piece}/>
-  }, [col, row, gameManager]);
+  }, [squareState]);
 
   return (
     <div className={s.outer} style={style}>
