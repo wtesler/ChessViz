@@ -6,11 +6,15 @@ const Piece = props => {
   const {piece} = props;
 
   const content = useMemo(() => {
-    if (piece === 'pawn') {
-      return <div className={s.pawn}/>
-    } else {
-      return null;
+    let className = '';
+    switch (piece) {
+      case 'pawn':
+        className = s.pawn;
+        break;
+      default:
+        break;
     }
+    return <div className={className}/>
   }, [piece]);
 
   return content;
