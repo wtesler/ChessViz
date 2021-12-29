@@ -44,7 +44,7 @@ const Square = props => {
     if (!squareState) {
       return;
     }
-    
+
     const piece = squareState.piece;
     if (!piece) {
       return null;

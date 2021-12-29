@@ -1,6 +1,8 @@
-.pawn {
-    width: 50%;
-    height: 50%;
-    border-radius: 100px;
-    background-color: red;
+.outer {
+    width: 100%;
+    height: 100%;
+}
+
+.image {
+    width: 100%;
 }

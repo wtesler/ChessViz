@@ -2,7 +2,7 @@
  * The state of a square including it's current piece and focus.
  */
 export default class SquareState {
-  constructor(piece='', whiteFocus=0, blackFocus=0) {
+  constructor(piece=null, whiteFocus=0, blackFocus=0) {
     this.piece = piece;
     this.focus = {
       white: whiteFocus,
@@ -24,7 +24,7 @@ export default class SquareState {
   }
 
   clearPiece() {
-    this.piece = '';
+    this.piece = null;
   }
 
   getFocus() {
