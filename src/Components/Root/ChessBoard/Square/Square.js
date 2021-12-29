@@ -24,8 +24,8 @@ const Square = props => {
     const evenX = col % 2 === 0;
     const evenY = row % 2 === 0;
     let colorString = (evenX && evenY) || (!evenX && !evenY)
-      ? "#bdbdbd"
-      : "#FFFFFF";
+      ? "#c2c2c2"
+      : "#f1f1f1";
 
     return colorString;
   }, [col, row]);
