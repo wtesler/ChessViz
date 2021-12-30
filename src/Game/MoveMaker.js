@@ -28,7 +28,7 @@ export default class MoveMaker {
       const row = player === WHITE ? 0 : 7;
       const currentKingSquareState = this.boardState[4][row];
       const currentRookSquareState = this.boardState[0][row];
-      const newKingSquareState = this.boardState[6][row];
+      const newKingSquareState = this.boardState[2][row];
       const newRookSquareState = this.boardState[3][row];
       currentKingSquareState.clearPiece()
       currentRookSquareState.clearPiece();
