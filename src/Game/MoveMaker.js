@@ -14,26 +14,26 @@ export default class MoveMaker {
     const notation = move.notation;
     const player = move.player;
 
-    if (notation === 'O-O') {
-      const row = player === WHITE ? 0 : 7;
-      const currentKingSquareState = this.boardState[4][row];
-      const currentRookSquareState = this.boardState[7][row];
-      const newKingSquareState = this.boardState[6][row];
-      const newRookSquareState = this.boardState[5][row];
-      currentKingSquareState.clearPiece()
-      currentRookSquareState.clearPiece();
-      newKingSquareState.setPiece(new PieceInfo(KING, player))
-      newRookSquareState.setPiece(new PieceInfo(ROOK, player))
-    } else if (notation === 'O-O-O') {
-      const row = player === WHITE ? 0 : 7;
-      const currentKingSquareState = this.boardState[4][row];
-      const currentRookSquareState = this.boardState[0][row];
-      const newKingSquareState = this.boardState[2][row];
-      const newRookSquareState = this.boardState[3][row];
-      currentKingSquareState.clearPiece()
-      currentRookSquareState.clearPiece();
-      newKingSquareState.setPiece(new PieceInfo(KING, player))
-      newRookSquareState.setPiece(new PieceInfo(ROOK, player))
+    if (notation === 'O-O' || notation === 'O-O-O') {
+      this.doCastle(notation, player);
     }
+  }
+
+  doCastle(notation, player) {
+    const row = player === WHITE ? 0 : 7;
+    const curRookCol = notation === 'O-O' ? 7 : 0;
+    const newKingCol = notation === 'O-O' ? 6 : 2;
+    const newRookCol = notation === 'O-O' ? 5 : 3;
+
+    const currentKingSquareState = this.boardState[4][row];
+    const currentRookSquareState = this.boardState[curRookCol][row];
+
+    const newKingSquareState = this.boardState[newKingCol][row];
+    const newRookSquareState = this.boardState[newRookCol][row];
+
+    currentKingSquareState.clearPiece()
+    currentRookSquareState.clearPiece();
+    newKingSquareState.setPiece(new PieceInfo(KING, player))
+    newRookSquareState.setPiece(new PieceInfo(ROOK, player))
   }
 }
