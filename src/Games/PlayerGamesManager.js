@@ -1,5 +1,6 @@
 import {AbstractDataManager} from "abstract-data-manager";
 import {Requests} from "../Lifecycles/shared/Requests";
+import {BLACK, WHITE} from "../Constants/players";
 
 /**
  * Provides an interface for getting player games data.
@@ -47,29 +48,45 @@ export default class PlayerGamesManager extends AbstractDataManager {
     for (const game of playerGames) {
       const pgn = game.pgn;
       const splitPgn = pgn.split('\n');
-      let movesList = [];
+
       const parsedPgn = {
-        meta: {event:"", site:"", date:"", round:"",
-               WUser:"", BUser:"", result:"", curr_pos:"", timeZone:"",
-               eco:"", ecoUrl:"", UTCDate:"", UTCTime:"", whiteElo:"",
-               blackElo:"", timeControl:"", termination:"", startTime:"",
-               endDate:"", endTime:"", link:""},
+        meta: {},
         moves: []
       };
-      for (const line of splitPgn){
-        if (line[0] === '[')
-          parsedPgn.meta[0] = line.substring(
-          line.indexOf('"') + 1,
-          line.lastIndexOf('"')
-        );
-        if (line[0] === '1')
-          movesList = line.split('}');
+
+      // Metadata loop
+      for (let line of splitPgn) {
+        if (!line || line.length === 0 || line[0] !== '[') {
+          break;
+        }
+        line = line.replace('[', '').replace(']', '');
+        const splitLine = line.split(' ');
+        const key = splitLine[0];
+        const value = splitLine.slice(1, splitLine.length).join(' ').replaceAll('"', '');
+        parsedPgn.meta[key] = value;
       }
-      for (const move in movesList) {
-        const cleanMove = movesList[move].replace(/{(.*?)]/,'');
-        parsedPgn.moves.push(cleanMove);
+
+      let movesLine = splitPgn[splitPgn.length - 2];
+      let timeStamps = movesLine.match(/{(.*?)}/g);
+      timeStamps = timeStamps.map(s => s.replaceAll('{[%clk ', ''));
+      timeStamps = timeStamps.map(s => s.replaceAll(']}', ''));
+
+      movesLine = movesLine.replaceAll(/{(.*?)}/g, '');
+      movesLine = movesLine.replaceAll('.', '');
+      let movesList = movesLine.split(' ');
+      movesList.pop(); //the last value is result not a move.
+      movesList = movesList.filter(m => m); //removes empty strings right side of arrow is bool check. removes all false on list.
+      for (let i = 0; i < movesList.length; i+=2) {
+        const number = Number(movesList[i]);
+        const notation = movesList[i+1];
+        const move = {
+          number: number,
+          notation: notation,
+          player: parsedPgn.moves.length % 2 === 0 ? WHITE : BLACK,
+          timeStamp: timeStamps[i / 2]
+        };
+        parsedPgn.moves.push(move);
       }
-      console.log(parsedPgn.meta)
       game.parsedPgn = parsedPgn;
     }
   }
