@@ -3,6 +3,7 @@ import SquareState from "./SquareState";
 import {AbstractDataManager} from "abstract-data-manager";
 import {BLACK, WHITE} from "../Constants/players";
 import PieceInfo from "./PieceInfo";
+import MoveMaker from "./MoveMaker";
 
 /**
  * Manages the state of a game.
@@ -13,8 +14,15 @@ export default class GameManager extends AbstractDataManager {
    */
   boardState = [];
 
-  constructor() {
+  currentGame = null;
+  currentMoveIndex = 0;
+
+  constructor(playerGamesManager) {
     super();
+
+    this.moveMaker = new MoveMaker(this.boardState);
+
+    this.onPlayerGames = this.onPlayerGames.bind(this);
 
     for (let c = 0; c < 8; c++) {
       const columns = [];
@@ -25,6 +33,24 @@ export default class GameManager extends AbstractDataManager {
     }
 
     this.resetPieces();
+
+    this.playerGamesManager = playerGamesManager;
+
+    this.playerGamesManager.addListener(this.onPlayerGames);
+  }
+
+  onPlayerGames(games) {
+    this.currentGame = games[0];
+    this.currentMoveIndex = 0;
+  }
+
+  step() {
+    const moves = this.currentGame.parsedPgn.moves;
+    const currentMove = moves[this.currentMoveIndex];
+    // console.log(currentMove);
+    this.moveMaker.makeMove(currentMove);
+    this.update();
+    this.currentMoveIndex++;
   }
 
   resetPieces() {
@@ -43,6 +69,10 @@ export default class GameManager extends AbstractDataManager {
 
   cancel() {
     // Don't need to do any cleanup.
+  }
+
+  destruct() {
+    this.playerGamesManager.removeListener(this.onPlayerGames);
   }
 
   getSquareState(col, row) {

@@ -5,7 +5,7 @@ import GameManager from "../../../../Game/GameManager";
 const MainModule = (rootModule) => {
   const chessDotComClient = new ChessDotComClient();
   const playerGamesManager = new PlayerGamesManager(chessDotComClient);
-  const gameManager = new GameManager();
+  const gameManager = new GameManager(playerGamesManager);
 
   const module = {
     playerGamesManager: playerGamesManager,

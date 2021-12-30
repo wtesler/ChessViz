@@ -5,13 +5,15 @@ import { useMemo} from "react";
 import MainModule from "./Module/MainModule";
 import ThemedBackground from "../Theme/Background/ThemedBackground";
 import ChessBoard from "../ChessBoard/ChessBoard";
-import TestChessDotComApi from "../TestApi/TestChessDotComApi";
+import GameControls from "../Game/GameControls";
+// import TestChessDotComApi from "../TestApi/TestChessDotComApi";
 
 const MainScreen = () => {
   const bodyContent = useMemo(() => {
     return (
       <div className={s.body}>
         <ChessBoard/>
+        <GameControls/>
       </div>
     );
   }, []);
@@ -20,7 +22,7 @@ const MainScreen = () => {
     <div className={s.outer}>
       <ThemedBackground/>
       {bodyContent}
-      <TestChessDotComApi />
+      {/*<TestChessDotComApi />*/}
     </div>
   );
 }

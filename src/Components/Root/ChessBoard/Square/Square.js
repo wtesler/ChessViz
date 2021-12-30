@@ -7,10 +7,14 @@ const Square = props => {
   const {col, row, module} = props;
   const {gameManager} = module;
 
-  const [squareState, setSquareState] = useState();
+  const [piece, setPiece] = useState();
 
   const onBoardStateUpdate = useCallback(boardState => {
-    setSquareState(boardState[col][row]);
+    // if (col === 6 && row === 0) {
+    //   console.log(boardState[col][row]);
+    // }
+    const squareState = boardState[col][row];
+    setPiece(squareState.piece);
   }, [col, row]);
 
   useEffect(() => {
@@ -41,16 +45,11 @@ const Square = props => {
   }, [color]);
 
   const pieceElement = useMemo(() => {
-    if (!squareState) {
-      return;
-    }
-
-    const piece = squareState.piece;
     if (!piece) {
       return null;
     }
     return <Piece piece={piece}/>
-  }, [squareState]);
+  }, [piece]);
 
   return (
     <div className={s.outer} style={style}>

@@ -17,6 +17,8 @@ export default class PlayerGamesManager extends AbstractDataManager {
     this.requests = new Requests();
 
     this._resetParams();
+
+    this.fetch('hellowill89', '12', '2021');
   }
 
   /**
@@ -37,7 +39,7 @@ export default class PlayerGamesManager extends AbstractDataManager {
   // Overriden from super
   async getData() {
     if (!this.username || this.month < 0 || this.year < 0) {
-      throw new Error("You must call `setParams` with valid values before trying to get data");
+      throw new Error("Don't call update directly. Call `fetch` instead.");
     }
     const playerGames = await this.chessDotComClient.readPlayerPgns(this.username, this.month, this.year, this.requests);
     this.parsePgns(playerGames);
