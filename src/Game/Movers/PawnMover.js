@@ -18,9 +18,9 @@ export default class PawnMover extends AbstractMover {
       const targetCol = COLUMN_MAP[notation[0]];
       const targetRow = ROW_MAP[notation[1]];
 
-      const pawnRow = this.findCandidateInColumn(targetCol, targetRow, player);
+      const candidateRow = this.scanColumnForCandidate(targetCol, targetRow, player);
 
-      const currentPawnSquare = this.boardState[targetCol][pawnRow];
+      const currentPawnSquare = this.boardState[targetCol][candidateRow];
       const targetPawnSquare = this.boardState[targetCol][targetRow];
 
       super.movePiece(currentPawnSquare, targetPawnSquare);
@@ -43,7 +43,7 @@ export default class PawnMover extends AbstractMover {
    * @param player white or black
    * @return Number the row of the pawn which can validly move to the target col/row.
    */
-  findCandidateInColumn(targetCol, targetRow, player) {
+  scanColumnForCandidate(targetCol, targetRow, player) {
     const startRow = player === WHITE ? 7 : 0;
     const searchDirection = player === WHITE ? -1 : 1;
     const moveDirection = player === WHITE ? 1 : -1;
