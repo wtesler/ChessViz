@@ -1,39 +1,24 @@
-import {WHITE} from "../Constants/players";
-import PieceInfo from "./PieceInfo";
-import {KING, ROOK} from "../Constants/pieces";
+import CastleMover from "./Movers/CastleMover";
+import PawnMover from "./Movers/PawnMover";
 
 export default class MoveMaker {
 
   constructor(boardState) {
     this.boardState = boardState;
+    this.castleMover = new CastleMover(this.boardState);
+    this.pawnMover = new PawnMover(this.boardState);
   }
 
   makeMove(move) {
-    console.log(move);
+    console.log(`${move.number} | ${move.player} | ${move.notation} | ${move.strippedNotation}`);
 
-    const notation = move.notation;
     const player = move.player;
+    const notation = move.strippedNotation;
 
-    if (notation === 'O-O' || notation === 'O-O-O') {
-      this.doCastle(notation, player);
+    if (notation.startsWith('O')) {
+      this.castleMover.move(notation, player);
+    } else if (notation[0] === notation[0].toLowerCase()) {
+      this.pawnMover.move(notation, player);
     }
-  }
-
-  doCastle(notation, player) {
-    const row = player === WHITE ? 0 : 7;
-    const curRookCol = notation === 'O-O' ? 7 : 0;
-    const newKingCol = notation === 'O-O' ? 6 : 2;
-    const newRookCol = notation === 'O-O' ? 5 : 3;
-
-    const currentKingSquareState = this.boardState[4][row];
-    const currentRookSquareState = this.boardState[curRookCol][row];
-
-    const newKingSquareState = this.boardState[newKingCol][row];
-    const newRookSquareState = this.boardState[newRookCol][row];
-
-    currentKingSquareState.clearPiece()
-    currentRookSquareState.clearPiece();
-    newKingSquareState.setPiece(new PieceInfo(KING, player))
-    newRookSquareState.setPiece(new PieceInfo(ROOK, player))
   }
 }

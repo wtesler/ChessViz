@@ -15,10 +15,16 @@ export default class SquareState {
     this.clearFocus();
   }
 
+  /**
+   * Returns PieceInfo object.
+   */
   getPiece() {
     return this.piece;
   }
 
+  /**
+   * Sets PieceInfo object.
+   */
   setPiece(piece) {
     this.piece = piece;
   }

@@ -78,12 +78,18 @@ export default class PlayerGamesManager extends AbstractDataManager {
       let movesList = movesLine.split(' ');
       movesList.pop(); //the last value is result not a move.
       movesList = movesList.filter(m => m); //removes empty strings right side of arrow is bool check. removes all false on list.
-      for (let i = 0; i < movesList.length; i+=2) {
+      for (let i = 0; i < movesList.length; i += 2) {
         const number = Number(movesList[i]);
-        const notation = movesList[i+1];
+        const notation = movesList[i + 1];
+
+        let strippedNotation = notation.replaceAll('x', ''); // Don't care about captures. (Maybe...)
+        strippedNotation = strippedNotation.replaceAll('+', ''); // Don't care about checks. (Maybe...)
+        strippedNotation = strippedNotation.replaceAll('#', ''); // Don't care about checkmate. (Maybe...)
+
         const move = {
           number: number,
           notation: notation,
+          strippedNotation: strippedNotation,
           player: parsedPgn.moves.length % 2 === 0 ? WHITE : BLACK,
           timeStamp: timeStamps[i / 2]
         };
