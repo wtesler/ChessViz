@@ -18,6 +18,7 @@ export default class MoveMaker {
     this.movers['R'] = new RookMover(this.board);
     this.movers['K'] = new KingMover(this.board);
     this.movers['O'] = new CastleMover(this.board);
+    this.movers['0'] = new CastleMover(this.board); // Some people use zeros instead of Ohs.
     this.movers['B'] = new BishopMover(this.board);
     this.movers['Q'] = new QueenMover(this.board);
     this.movers['N'] = new KnightMover(this.board);

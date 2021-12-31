@@ -8,7 +8,7 @@ export default class CastleMover extends AbstractPieceMover {
   }
 
   move(board, player, notation) {
-    const isShortCastle = notation === 'O-O';
+    const isShortCastle = notation.length === 3;
 
     const backRow = player === WHITE ? 0 : 7;
     const curRookCol = isShortCastle ? 7 : 0;
