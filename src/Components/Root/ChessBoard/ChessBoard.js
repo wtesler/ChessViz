@@ -1,6 +1,6 @@
 import s from './ChessBoard.module.css';
 import {useCallback, useEffect, useMemo, useRef, useState} from "react";
-import Square from "./Square/Square";
+import SquareView from "./Square/SquareView";
 
 /**
  * Constructs a square of squares.
@@ -38,28 +38,28 @@ const ChessBoard = () => {
   /**
    * Create a 2D List of Squares.
    */
-  const squaresElement = useMemo(() => {
-    const squares = [];
+  const squares = useMemo(() => {
+    const squareViews = [];
     for (let c = 0; c < 8; c++) {
       const columns = [];
       for (let r = 0; r < 8; r++) {
         const key = `${c},${r}`;
-        const square = <Square col={c} row={r} key={key} />
+        const square = <SquareView col={c} row={r} key={key} />
         columns.push(square);
       }
-      squares.push(columns);
+      squareViews.push(columns);
     }
 
     return (
       <div className={s.squares} style={{width: length, height: length}}>
-        {squares}
+        {squareViews}
       </div>
     )
   }, [length]);
 
   return (
     <div className={s.outer} ref={outerRef}>
-      {squaresElement}
+      {squares}
     </div>
   );
 }

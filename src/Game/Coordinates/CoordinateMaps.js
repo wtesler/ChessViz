@@ -46,6 +46,10 @@ export const ROW_MAP_INVERSE = {
   7: '8',
 }
 
+export const toArrayCoordinates = (rank, file) => {
+  return [COLUMN_MAP[rank], ROW_MAP[file]];
+}
+
 export const toChessCoordinates = (col, row) => {
   return `${COLUMN_MAP_INVERSE[col]}${ROW_MAP_INVERSE[row]}`
 }

@@ -1,4 +1,4 @@
-import AbstractMover from "./AbstractMover";
+import AbstractPieceMover from "./AbstractPieceMover";
 import {
   COLUMN_MAP,
   ROW_MAP,
@@ -7,21 +7,21 @@ import {
 import {WHITE} from "../../Constants/players";
 import {PAWN} from "../../Constants/pieces";
 
-export default class PawnMover extends AbstractMover {
-  constructor(boardState) {
-    super(boardState);
+export default class PawnMover extends AbstractPieceMover {
+  constructor() {
+    super();
     this.setVerbose(true);
   }
 
-  move(notation, player) {
+  move(board, player, notation) {
     if (notation.length === 2) {
       const targetCol = COLUMN_MAP[notation[0]];
       const targetRow = ROW_MAP[notation[1]];
 
-      const candidateRow = this.scanColumnForCandidate(targetCol, targetRow, player);
+      const correctPawn = this.scanColumnForPawn(board, targetCol, targetRow, player);
 
-      const currentPawnSquare = this.boardState[targetCol][candidateRow];
-      const targetPawnSquare = this.boardState[targetCol][targetRow];
+      const currentPawnSquare = board[targetCol][correctPawn];
+      const targetPawnSquare = board[targetCol][targetRow];
 
       super.movePiece(currentPawnSquare, targetPawnSquare);
 
@@ -38,21 +38,19 @@ export default class PawnMover extends AbstractMover {
    * Imagine a situation where two pawns are stacked vertically, and one may jump forward 2 squares.
    * That is why we need this calculation.
    *
-   * @param targetCol target col
-   * @param targetRow target row
-   * @param player white or black
-   * @return Number the row of the pawn which can validly move to the target col/row.
+   * @return Number the row of the pawn for the given user which can validly move to the target col/row.
    */
-  scanColumnForCandidate(targetCol, targetRow, player) {
-    const startRow = player === WHITE ? 7 : 0;
-    const searchDirection = player === WHITE ? -1 : 1;
-    const moveDirection = player === WHITE ? 1 : -1;
+  scanColumnForPawn(board, targetCol, targetRow, player) {
+    const isWhite = player === WHITE;
+    const startRow = isWhite ? 7 : 0;
+    const searchDirection = isWhite ? -1 : 1;
+    const moveDirection = isWhite ? 1 : -1;
 
     super.log(`Scanning column starting from square ${toChessCoordinates(targetCol, startRow)}`);
 
     for (let row = startRow; row >= 0 || row < 8; row += searchDirection) {
-      const squareState = this.boardState[targetCol][row];
-      const pieceInfo = squareState.getPiece();
+      const square = board[targetCol][row];
+      const pieceInfo = square.getPiece();
       if (!pieceInfo) {
         continue; // Square is empty.
       }

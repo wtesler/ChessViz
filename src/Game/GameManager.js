@@ -1,18 +1,19 @@
 import {BISHOP, KING, KNIGHT, PAWN, QUEEN, ROOK} from "../Constants/pieces";
-import SquareState from "./SquareState";
+import Square from "./Square";
 import {AbstractDataManager} from "abstract-data-manager";
 import {BLACK, WHITE} from "../Constants/players";
-import PieceInfo from "./PieceInfo";
+import Piece from "./Piece";
 import MoveMaker from "./MoveMaker";
 
 /**
  * Manages the state of a game.
  */
 export default class GameManager extends AbstractDataManager {
+
   /**
-   *  2D Array of square states.
+   *  2D Array of squares.
    */
-  boardState = [];
+  board = [];
 
   currentGame = null;
   currentMoveIndex = 0;
@@ -20,16 +21,16 @@ export default class GameManager extends AbstractDataManager {
   constructor(playerGamesManager) {
     super();
 
-    this.moveMaker = new MoveMaker(this.boardState);
+    this.moveMaker = new MoveMaker(this.board);
 
     this.onPlayerGames = this.onPlayerGames.bind(this);
 
     for (let c = 0; c < 8; c++) {
       const columns = [];
       for (let r = 0; r < 8; r++) {
-        columns.push(new SquareState());
+        columns.push(new Square());
       }
-      this.boardState.push(columns);
+      this.board.push(columns);
     }
 
     this.resetPieces();
@@ -54,47 +55,47 @@ export default class GameManager extends AbstractDataManager {
   }
 
   resetPieces() {
-    this._initPawnRow(WHITE);
-    this._initPawnRow(BLACK);
+    this._resetPawnRow(WHITE);
+    this._resetPawnRow(BLACK);
 
-    this._initBackRow(WHITE);
-    this._initBackRow(BLACK);
+    this._resetBackRow(WHITE);
+    this._resetBackRow(BLACK);
 
     this.update();
   }
 
   async getData() {
-    return this.boardState;
+    return this.board;
   }
 
   cancel() {
-    // Don't need to do any cleanup.
+    // Don't need to do any cleanup because no remote tasks.
   }
 
   destruct() {
     this.playerGamesManager.removeListener(this.onPlayerGames);
   }
 
-  getSquareState(col, row) {
-    return this.boardState[col][row];
+  getSquare(col, row) {
+    return this.board[col][row];
   }
 
-  _initPawnRow(player) {
+  _resetPawnRow(player) {
     const row = player === WHITE ? 1 : 6;
     for (let i = 0; i < 8; i++) {
-      this.boardState[i][row].setPiece(new PieceInfo(PAWN, player));
+      this.board[i][row].setPiece(new Piece(PAWN, player));
     }
   }
 
-  _initBackRow(player) {
+  _resetBackRow(player) {
     const row = player === WHITE ? 0 : 7;
-    this.boardState[0][row].setPiece(new PieceInfo(ROOK, player));
-    this.boardState[1][row].setPiece(new PieceInfo(KNIGHT, player));
-    this.boardState[2][row].setPiece(new PieceInfo(BISHOP, player));
-    this.boardState[3][row].setPiece(new PieceInfo(QUEEN, player));
-    this.boardState[4][row].setPiece(new PieceInfo(KING, player));
-    this.boardState[5][row].setPiece(new PieceInfo(BISHOP, player));
-    this.boardState[6][row].setPiece(new PieceInfo(KNIGHT, player));
-    this.boardState[7][row].setPiece(new PieceInfo(ROOK, player));
+    this.board[0][row].setPiece(new Piece(ROOK, player));
+    this.board[1][row].setPiece(new Piece(KNIGHT, player));
+    this.board[2][row].setPiece(new Piece(BISHOP, player));
+    this.board[3][row].setPiece(new Piece(QUEEN, player));
+    this.board[4][row].setPiece(new Piece(KING, player));
+    this.board[5][row].setPiece(new Piece(BISHOP, player));
+    this.board[6][row].setPiece(new Piece(KNIGHT, player));
+    this.board[7][row].setPiece(new Piece(ROOK, player));
   }
 }

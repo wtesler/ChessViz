@@ -1,4 +1,4 @@
-import s from './Piece.module.css';
+import s from './PieceView.module.css';
 import {useMemo} from "react";
 import {withModule} from "react-hoc-di";
 import {Icon} from "react-basic-icon";
@@ -15,7 +15,7 @@ import queen_black from "../../../../Images/queen_black.svg";
 import king_white from "../../../../Images/king_white.svg";
 import king_black from "../../../../Images/king_black.svg";
 
-const Piece = props => {
+const PieceView = props => {
   const {piece} = props;
 
   const image = useMemo(() => {
@@ -60,4 +60,4 @@ const Piece = props => {
   return content;
 }
 
-export default withModule(Piece);
+export default withModule(PieceView);

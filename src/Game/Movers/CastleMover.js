@@ -1,13 +1,13 @@
-import AbstractMover from "./AbstractMover";
+import AbstractPieceMover from "./AbstractPieceMover";
 import {WHITE} from "../../Constants/players";
 
-export default class CastleMover extends AbstractMover {
-  constructor(boardState) {
-    super(boardState);
+export default class CastleMover extends AbstractPieceMover {
+  constructor() {
+    super();
     this.setVerbose(true); // Useful for testing.
   }
 
-  move(notation, player) {
+  move(board, player, notation) {
     const isShortCastle = notation === 'O-O';
 
     const backRow = player === WHITE ? 0 : 7;
@@ -17,13 +17,13 @@ export default class CastleMover extends AbstractMover {
     const targetRookCol = isShortCastle ? 5 : 3;
 
     // Move King
-    const currentKingSquare = this.boardState[4][backRow];
-    const targetKingSquare = this.boardState[targetKingCol][backRow];
+    const currentKingSquare = board[4][backRow];
+    const targetKingSquare = board[targetKingCol][backRow];
     super.movePiece(currentKingSquare, targetKingSquare);
 
     // Move Rook
-    const currentRookSquare = this.boardState[curRookCol][backRow];
-    const targetRookSquare = this.boardState[targetRookCol][backRow];
+    const currentRookSquare = board[curRookCol][backRow];
+    const targetRookSquare = board[targetRookCol][backRow];
     super.movePiece(currentRookSquare, targetRookSquare);
   }
 }

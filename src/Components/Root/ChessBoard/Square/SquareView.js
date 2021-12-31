@@ -1,28 +1,31 @@
-import s from './Square.module.css';
+import s from './SquareView.module.css';
 import {useCallback, useEffect, useMemo, useState} from "react";
 import {withModule} from "react-hoc-di";
-import Piece from "../Piece/Piece";
+import PieceView from "../Piece/PieceView";
 
-const Square = props => {
+const SquareView = props => {
   const {col, row, module} = props;
   const {gameManager} = module;
 
   const [piece, setPiece] = useState();
 
-  const onBoardStateUpdate = useCallback(boardState => {
-    // if (col === 6 && row === 0) {
-    //   console.log(boardState[col][row]);
-    // }
-    const squareState = boardState[col][row];
-    setPiece(squareState.piece);
+  /**
+   * Sets the piece for this square. May be null.
+   */
+  const onBoardUpdate = useCallback(board => {
+    const square = board[col][row];
+    setPiece(square.piece);
   }, [col, row]);
 
+  /**
+   * Listen for any changes in the board.
+   */
   useEffect(() => {
-    gameManager.addListener(onBoardStateUpdate);
+    gameManager.addListener(onBoardUpdate);
     return () => {
-      gameManager.removeListener(onBoardStateUpdate);
+      gameManager.removeListener(onBoardUpdate);
     };
-  }, [gameManager, onBoardStateUpdate])
+  }, [gameManager, onBoardUpdate]);
 
   const defaultColor = useMemo(() => {
     const evenX = col % 2 === 0;
@@ -48,7 +51,7 @@ const Square = props => {
     if (!piece) {
       return null;
     }
-    return <Piece piece={piece}/>
+    return <PieceView piece={piece}/>
   }, [piece]);
 
   return (
@@ -58,4 +61,4 @@ const Square = props => {
   );
 }
 
-export default withModule(Square);
+export default withModule(SquareView);
