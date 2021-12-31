@@ -47,6 +47,12 @@ export default class GameManager extends AbstractDataManager {
 
   step() {
     const moves = this.currentGame.parsedPgn.moves;
+
+    if (this.currentMoveIndex >= moves.length) {
+      console.log("Game ended.");
+      return;
+    }
+    
     const currentMove = moves[this.currentMoveIndex];
     // console.log(currentMove);
     this.moveMaker.makeMove(currentMove);

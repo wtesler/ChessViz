@@ -24,23 +24,23 @@ const PieceView = props => {
         white: pawn_white,
         black: pawn_black,
       },
-      rook: {
+      R: {
         white: rook_white,
         black: rook_black,
       },
-      knight: {
+      N: {
         white: knight_white,
         black: knight_black,
       },
-      bishop: {
+      B: {
         white: bishop_white,
         black: bishop_black,
       },
-      queen: {
+      Q: {
         white: queen_white,
         black: queen_black,
       },
-      king: {
+      K: {
         white: king_white,
         black: king_black,
       }
