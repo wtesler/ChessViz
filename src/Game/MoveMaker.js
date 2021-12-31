@@ -27,7 +27,7 @@ export default class MoveMaker {
   }
 
   makeMove(move) {
-    console.log(`${move.player} | ${move.strippedNotation}`);
+    console.log(`${move.number} | ${move.player} | ${move.strippedNotation}`);
 
     const player = move.player;
     const notation = move.strippedNotation;

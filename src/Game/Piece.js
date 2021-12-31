@@ -6,4 +6,8 @@ export default class Piece {
     this.type = type;
     this.player = player;
   }
+
+  setType(type) {
+    this.type = type;
+  }
 }

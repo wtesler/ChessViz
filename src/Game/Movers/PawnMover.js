@@ -14,39 +14,65 @@ export default class PawnMover extends AbstractPieceMover {
   }
 
   move(board, player, notation) {
-    if (notation.length === 2) {
-      const targetCol = COLUMN_MAP[notation[0]];
-      const targetRow = ROW_MAP[notation[1]];
+    const firstChar = notation[0];
+    const secondChar = notation[1];
+    const thirdChar = notation[2];
+    const fourthChar = notation[3];
 
-      const correctPawn = this.scanColumnForPawn(board, targetCol, targetRow, player);
+    const currentColumn = COLUMN_MAP[firstChar];
 
-      const currentPawnSquare = board[targetCol][correctPawn];
-      const targetPawnSquare = board[targetCol][targetRow];
+    const isNormalForward = notation.length === 2;
+    const isCapturing = notation.length === 3;
+    const isPromoting = notation.length === 4;
 
-      super.movePiece(currentPawnSquare, targetPawnSquare);
-
-    } else if (notation.length === 3) {
-      console.warn("Pawn moves with notation length greater than 2 are not supported yet");
+    let targetRow;
+    let targetCol;
+    if (isNormalForward || isPromoting) {
+      targetRow = ROW_MAP[secondChar];
+      targetCol = currentColumn;
     } else {
-      console.warn("Pawn moves with notation length greater than 3 are not supported yet");
+      targetRow = ROW_MAP[thirdChar];
+      targetCol = COLUMN_MAP[secondChar];
+    }
+
+    const currentRow = this.scanColumnForPawnRow(board, currentColumn, targetRow, player);
+
+    const currentSquare = board[currentColumn][currentRow];
+    const targetSquare = board[targetCol][targetRow];
+
+    super.log(`Moving pawn from ${toChessCoordinates(currentColumn, currentRow)} to ${toChessCoordinates(targetCol, targetRow)}`);
+
+    if (isCapturing && !targetSquare.piece) { // EN PASSANT
+      const opponentCol = targetCol;
+      const opponentRow = currentRow;
+      const opponentSquare = board[opponentCol][opponentRow];
+      opponentSquare.clearPiece();
+      super.log("EN PASSANT");
+    }
+
+    super.movePiece(currentSquare, targetSquare);
+
+    if (isPromoting) {
+      targetSquare.getPiece().setType(fourthChar);
     }
   }
 
   /**
    * Scans across the given column to find the pawn that can validly move to the given row.
    *
-   * Imagine a situation where two pawns are stacked vertically, and one may jump forward 2 squares.
-   * That is why we need this calculation.
+   * We start from the player's far side.
    *
-   * @return Number the row of the pawn for the given user which can validly move to the target col/row.
+   * Imagine a situation where two pawns are stacked vertically.
+   *
+   * @return Number the row index of the pawn for the given user which can validly move to the target col/row.
    */
-  scanColumnForPawn(board, targetCol, targetRow, player) {
+  scanColumnForPawnRow(board, targetCol, targetRow, player) {
     const isWhite = player === WHITE;
     const startRow = isWhite ? 7 : 0;
     const searchDirection = isWhite ? -1 : 1;
     const moveDirection = isWhite ? 1 : -1;
 
-    super.log(`Scanning column starting from square ${toChessCoordinates(targetCol, startRow)}`);
+    // super.log(`Scanning column starting from square ${toChessCoordinates(targetCol, startRow)}`);
 
     for (let row = startRow; row >= 0 || row < 8; row += searchDirection) {
       const square = board[targetCol][row];
@@ -61,21 +87,15 @@ export default class PawnMover extends AbstractPieceMover {
         continue; // Not our piece.
       }
 
-      super.log(`Found Pawn at ${toChessCoordinates(targetCol, row)}`);
+      const canJumpForwardOnceToTarget = row + (1 * moveDirection) === targetRow;
+      const canJumpForwardTwiceToTarget = row + (2 * moveDirection) === targetRow;
 
-      // Can the pawn jump forwards 1 square to the target row?
-      if (row + (1 * moveDirection) === targetRow) {
+      if (canJumpForwardOnceToTarget || canJumpForwardTwiceToTarget) {
+        // super.log(`Found Pawn at ${toChessCoordinates(targetCol, row)}`);
         return row;
       }
-
-      // Can the pawn jump forwards 2 squares to the target row?
-      if (row + (2 * moveDirection) === targetRow) {
-        return row;
-      }
-
-      super.log(`Pawn could not move to the target coordinates.`);
     }
 
-    throw new Error("No candidate was found for move. Is there a problem with the PGN?");
+    throw new Error("No valid pawn was found on the given column. Is there a problem with the PGN?");
   }
 }
