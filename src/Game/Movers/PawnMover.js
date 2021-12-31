@@ -65,10 +65,12 @@ export default class PawnMover extends AbstractMover {
 
       super.log(`Found Pawn at ${toChessCoordinates(targetCol, row)}`);
 
+      // Can the pawn jump forwards 1 square to the target row?
       if (row + (1 * moveDirection) === targetRow) {
         return row;
       }
 
+      // Can the pawn jump forwards 2 squares to the target row?
       if (row + (2 * moveDirection) === targetRow) {
         return row;
       }
