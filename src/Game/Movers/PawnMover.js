@@ -40,14 +40,14 @@ export default class PawnMover extends AbstractPieceMover {
     const currentSquare = board[currentColumn][currentRow];
     const targetSquare = board[targetCol][targetRow];
 
-    super.log(`Moving pawn from ${toChessCoordinates(currentColumn, currentRow)} to ${toChessCoordinates(targetCol, targetRow)}`);
+    super.log(`Moving pawn from ${toChessCoordinates(currentColumn, currentRow)} to ${toChessCoordinates(targetCol, targetRow)}.`);
 
     if (isCapturing && !targetSquare.piece) { // EN PASSANT
       const opponentCol = targetCol;
       const opponentRow = currentRow;
       const opponentSquare = board[opponentCol][opponentRow];
       opponentSquare.clearPiece();
-      super.log("EN PASSANT");
+      super.log("en passant.");
     }
 
     super.movePiece(currentSquare, targetSquare);

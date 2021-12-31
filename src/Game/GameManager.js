@@ -52,7 +52,7 @@ export default class GameManager extends AbstractDataManager {
       console.log("Game ended.");
       return;
     }
-    
+
     const currentMove = moves[this.currentMoveIndex];
     // console.log(currentMove);
     this.moveMaker.makeMove(currentMove);
