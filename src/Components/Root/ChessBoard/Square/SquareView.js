@@ -3,12 +3,15 @@ import {useCallback, useEffect, useMemo, useState} from "react";
 import {withModule} from "react-hoc-di";
 import PieceView from "../Piece/PieceView";
 import {COLUMN_MAP_INVERSE, ROW_MAP_INVERSE} from "../../../../Game/Coordinates/CoordinateMaps";
+import {BLACK, WHITE} from "../../../../Constants/players";
 
 const SquareView = props => {
   const {col, row, module} = props;
   const {gameManager} = module;
 
   const [piece, setPiece] = useState();
+  const [whiteAttention, setWhiteAttention] = useState();
+  const [blackAttention, setBlackAttention] = useState();
 
   /**
    * Sets the piece for this square. May be null.
@@ -16,6 +19,8 @@ const SquareView = props => {
   const onBoardUpdate = useCallback(board => {
     const square = board[col][row];
     setPiece(square.piece);
+    setWhiteAttention(square.attention[WHITE]);
+    setBlackAttention(square.attention[BLACK]);
   }, [col, row]);
 
   /**
@@ -39,8 +44,30 @@ const SquareView = props => {
   }, [col, row]);
 
   const color = useMemo(() => {
-    return defaultColor;
-  }, [defaultColor]);
+    const lerp = (a, b, t) => {
+      return a * (1 - t) + b * t;
+    }
+
+    if (whiteAttention === 0 && blackAttention === 0) {
+      return defaultColor;
+    }
+
+    let r = 255;
+    let g = 255;
+    let b = 255;
+
+    const whiteVal = lerp(0, 255, whiteAttention / 10);
+    const blackVal = lerp(0, 255, blackAttention / 10);
+
+    g -= whiteVal;
+    b -= whiteVal;
+
+    r -= blackVal;
+    g -= blackVal;
+
+    return `rgb(${r}, ${g}, ${b})`;
+
+  }, [defaultColor, whiteAttention, blackAttention]);
 
   const style = useMemo(() => {
     const s = {};

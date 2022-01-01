@@ -4,6 +4,7 @@ import {AbstractDataManager} from "abstract-data-manager";
 import {BLACK, WHITE} from "../Constants/players";
 import Piece from "./Piece";
 import MoveMaker from "./MoveMaker";
+import AttentionUpdater from "./AttentionUpdater";
 
 /**
  * Manages the state of a game.
@@ -24,6 +25,7 @@ export default class GameManager extends AbstractDataManager {
     super();
 
     this.moveMaker = new MoveMaker(this.board);
+    this.attentionUpdater = new AttentionUpdater();
 
     this.onPlayerGames = this.onPlayerGames.bind(this);
 
@@ -64,6 +66,7 @@ export default class GameManager extends AbstractDataManager {
     const currentMove = moves[this.currentMoveIndex];
     // console.log(currentMove);
     this.moveMaker.makeMove(currentMove);
+    this.attentionUpdater.update(this.board);
     this.update();
     this.currentMoveIndex++;
   }
@@ -74,6 +77,8 @@ export default class GameManager extends AbstractDataManager {
 
     this._resetBackRow(WHITE);
     this._resetBackRow(BLACK);
+
+    this.attentionUpdater.update(this.board);
 
     this.update();
   }
