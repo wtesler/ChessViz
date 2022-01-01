@@ -1,6 +1,4 @@
 /**
- * Abstract Class.
- *
  * Abstract Piece Mover has methods useful for piece movers.
  *
  * Movers implement 'move'.

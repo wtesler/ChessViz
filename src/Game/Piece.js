@@ -7,6 +7,10 @@ export default class Piece {
     this.player = player;
   }
 
+  getType() {
+    return this.type;
+  }
+
   setType(type) {
     this.type = type;
   }
