@@ -1,4 +1,4 @@
-import AbstractPieceMover from "./AbstractPieceMover";
+import AbstractPieceMover from "./Abstract/AbstractPieceMover";
 import {
   COLUMN_MAP,
   ROW_MAP,

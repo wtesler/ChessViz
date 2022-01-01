@@ -1,4 +1,4 @@
-import AbstractPieceMover from "./AbstractPieceMover";
+import AbstractPieceMover from "./Abstract/AbstractPieceMover";
 
 export default class KnightMover extends AbstractPieceMover {
   constructor() {

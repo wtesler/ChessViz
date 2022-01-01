@@ -1,4 +1,4 @@
-import AbstractPieceMover from "./AbstractPieceMover";
+import AbstractPieceMover from "./Abstract/AbstractPieceMover";
 import {toArrayCoordinates} from "../Coordinates/CoordinateMaps";
 import {KING} from "../../Constants/pieces";
 

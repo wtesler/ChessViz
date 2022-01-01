@@ -1,4 +1,4 @@
-import AbstractPieceMover from "./AbstractPieceMover";
+import AbstractPieceMover from "./Abstract/AbstractPieceMover";
 import {WHITE} from "../../Constants/players";
 
 export default class CastleMover extends AbstractPieceMover {
