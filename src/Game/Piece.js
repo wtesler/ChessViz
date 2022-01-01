@@ -14,4 +14,8 @@ export default class Piece {
   setType(type) {
     this.type = type;
   }
+
+  getPlayer() {
+    return this.player;
+  }
 }

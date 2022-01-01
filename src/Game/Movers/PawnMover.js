@@ -10,7 +10,7 @@ import {PAWN} from "../../Constants/pieces";
 export default class PawnMover extends AbstractPieceMover {
   constructor() {
     super();
-    this.setVerbose(true);
+    this.setVerbose(false);
   }
 
   move(board, player, notation) {

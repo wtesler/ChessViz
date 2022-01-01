@@ -12,19 +12,19 @@ export default class BishopMover extends AbstractLinePieceMover {
 
     const targetSquare = board[targetCol][targetRow];
 
-    const squareInfos = this.discoverBishopsAlongDiagonals(board, targetCol, targetRow);
+    const squareInfos = this.discoverBishopsAlongDiagonals(board, player, targetCol, targetRow);
 
     const currentSquare = super.choosePieceSquareFromSquareInfos(squareInfos, notation);
 
     super.movePiece(currentSquare, targetSquare);
   }
 
-  discoverBishopsAlongDiagonals(board, targetCol, targetRow) {
+  discoverBishopsAlongDiagonals(board, player, targetCol, targetRow) {
     const squareInfos = [];
-    super.discoverInDirection(board, targetCol, targetRow, 1, 1, BISHOP, squareInfos);
-    super.discoverInDirection(board, targetCol, targetRow, 1, -1, BISHOP, squareInfos);
-    super.discoverInDirection(board, targetCol, targetRow, -1, 1, BISHOP, squareInfos);
-    super.discoverInDirection(board, targetCol, targetRow, -1, -1, BISHOP, squareInfos);
+    super.discoverInDirection(board, targetCol, targetRow, 1, 1, BISHOP, player, squareInfos);
+    super.discoverInDirection(board, targetCol, targetRow, 1, -1, BISHOP, player, squareInfos);
+    super.discoverInDirection(board, targetCol, targetRow, -1, 1, BISHOP, player, squareInfos);
+    super.discoverInDirection(board, targetCol, targetRow, -1, -1, BISHOP, player, squareInfos);
     return squareInfos;
   }
 }

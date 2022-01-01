@@ -1,5 +1,3 @@
-import {toChessCoordinates} from "../../Coordinates/CoordinateMaps";
-
 /**
  * Abstract Piece Mover has methods useful for piece movers.
  *
