@@ -15,7 +15,9 @@ export default class GameManager extends AbstractDataManager {
    */
   board = [];
 
+  games = [];
   currentGame = null;
+  currentGameIndex = 0;
   currentMoveIndex = 0;
 
   constructor(playerGamesManager) {
@@ -41,7 +43,13 @@ export default class GameManager extends AbstractDataManager {
   }
 
   onPlayerGames(games) {
-    this.currentGame = games[0];
+    this.games = games;
+    this.setGameIndex(0);
+  }
+
+  setGameIndex(gameIndex) {
+    this.resetPieces();
+    this.currentGame = this.games[gameIndex];
     this.currentMoveIndex = 0;
   }
 

@@ -13,6 +13,7 @@ export default class BishopMover extends AbstractPieceMover {
     const thirdChar = notation[2];
     const fourthChar = notation[3];
 
+    // Can either be a rank or file specifier.
     const hasExtraSpecifier = notation.length === 4;
 
     let targetCol, targetRow;
@@ -33,7 +34,7 @@ export default class BishopMover extends AbstractPieceMover {
     let currentSquare;
     if (hasExtraSpecifier) {
       const specifier = secondChar;
-      for (const squareInfo of bishopSquareInfos) {
+      for (const squareInfo of bishopSquareInfos) { // Choose the bishop which satisfys the specifier.
         const square = squareInfo[0];
         const col = squareInfo[1];
         const row = squareInfo[2];

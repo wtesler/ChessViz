@@ -1,12 +1,14 @@
 /**
- * The state of a square including it's current piece and focus.
+ * The state of a square including it's current piece and attention.
  */
+import {BLACK, WHITE} from "../Constants/players";
+
 export default class Square {
   constructor(piece=null, whiteAttention=0, blackAttention=0) {
     this.piece = piece;
     this.attention = {
-      white: whiteAttention,
-      black: blackAttention
+      [WHITE]: whiteAttention,
+      [BLACK]: blackAttention
     };
   }
 
@@ -36,10 +38,18 @@ export default class Square {
     this.piece = null;
   }
 
+  getAttention() {
+    return this.attention;
+  }
+
+  addAttention(player) {
+    this.attention[player]++;
+  }
+
   clearAttention() {
     this.attention = {
-      white: 0,
-      black: 0
+      [WHITE]: 0,
+      [BLACK]: 0
     };
   }
 }
