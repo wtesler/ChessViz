@@ -10,17 +10,18 @@
 .index {
     position: absolute;
     left: 2%;
-    font-size: 70%;
+    font-size: 75%;
+    line-height: 75%;
     font-weight: 600;
-    color: #6f6f6f;
-    text-shadow: 1px 1px rgba(59, 59, 59, 0.1);
+    color: #3d3d3d;
+    /*text-shadow: 1px 1px rgba(59, 59, 59, 0.1);*/
     user-select: none;
 }
 
 .rank {
-    top: 1%;
+    top: 3%;
 }
 
 .file {
-    bottom: 1%;
+    bottom: 3%;
 }
