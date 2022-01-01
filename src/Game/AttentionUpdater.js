@@ -1,10 +1,20 @@
-import {PAWN} from "../Constants/pieces";
+import {BISHOP, KING, KNIGHT, PAWN, QUEEN, ROOK} from "../Constants/pieces";
 import PawnAttention from "./Attention/PawnAttention";
+import BishopAttention from "./Attention/BishopAttention";
+import RookAttention from "./Attention/RookAttention";
+import QueenAttention from "./Attention/QueenAttention";
+import KingAttention from "./Attention/KingAttention";
+import KnightAttention from "./Attention/KnightAttention";
 
 export default class AttentionUpdater {
   constructor() {
     this.attendants = {
-      [PAWN]: new PawnAttention()
+      [PAWN]: new PawnAttention(),
+      [BISHOP]: new BishopAttention(),
+      [ROOK]: new RookAttention(),
+      [QUEEN]: new QueenAttention(),
+      [KING]: new KingAttention(),
+      [KNIGHT]: new KnightAttention(),
     }
   }
 
