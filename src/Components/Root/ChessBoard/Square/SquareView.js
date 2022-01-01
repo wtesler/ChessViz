@@ -56,8 +56,8 @@ const SquareView = props => {
     let g = 255;
     let b = 255;
 
-    const whiteVal = lerp(0, 255, whiteAttention / 10);
-    const blackVal = lerp(0, 255, blackAttention / 10);
+    const whiteVal = lerp(0, 255, whiteAttention);
+    const blackVal = lerp(0, 255, blackAttention);
 
     g -= whiteVal;
     b -= whiteVal;

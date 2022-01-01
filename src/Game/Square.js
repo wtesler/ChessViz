@@ -46,6 +46,10 @@ export default class Square {
     this.attention[player]++;
   }
 
+  setAttention(player, attention) {
+    this.attention[player] = attention;
+  }
+
   clearAttention() {
     this.attention = {
       [WHITE]: 0,
