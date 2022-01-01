@@ -2,6 +2,7 @@ import s from './SquareView.module.css';
 import {useCallback, useEffect, useMemo, useState} from "react";
 import {withModule} from "react-hoc-di";
 import PieceView from "../Piece/PieceView";
+import {COLUMN_MAP_INVERSE, ROW_MAP_INVERSE} from "../../../../Game/Coordinates/CoordinateMaps";
 
 const SquareView = props => {
   const {col, row, module} = props;
@@ -54,9 +55,35 @@ const SquareView = props => {
     return <PieceView piece={piece}/>
   }, [piece]);
 
+  const rankElement = useMemo(() => {
+    if (col > 0) {
+      return;
+    }
+    const rank = ROW_MAP_INVERSE[row];
+    return (
+      <div className={`${s.rank} ${s.index}`}>
+        {rank}
+      </div>
+    )
+  }, [row, col]);
+
+  const fileElement = useMemo(() => {
+    if (row > 0) {
+      return;
+    }
+    const file = COLUMN_MAP_INVERSE[col];
+    return (
+      <div className={`${s.file} ${s.index}`}>
+        {file}
+      </div>
+    )
+  }, [row, col]);
+
   return (
     <div className={s.outer} style={style}>
       {pieceElement}
+      {rankElement}
+      {fileElement}
     </div>
   );
 }

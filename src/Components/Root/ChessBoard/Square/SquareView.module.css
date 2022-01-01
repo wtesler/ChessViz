@@ -4,4 +4,23 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    position: relative;
+}
+
+.index {
+    position: absolute;
+    left: 2%;
+    font-size: 70%;
+    font-weight: 600;
+    color: #444444;
+    text-shadow: .5px .5px rgba(0, 0, 0, 0.1);
+    user-select: none;
+}
+
+.rank {
+    top: 1%;
+}
+
+.file {
+    bottom: 1%;
 }
