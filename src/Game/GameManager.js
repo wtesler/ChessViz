@@ -83,6 +83,11 @@ export default class GameManager extends AbstractDataManager {
     this.update();
   }
 
+  step(move) {
+    // Change the board state based on the move.
+    this.update();
+  }
+
   async getData() {
     return this.board;
   }
