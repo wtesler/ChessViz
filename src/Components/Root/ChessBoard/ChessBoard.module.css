@@ -5,10 +5,13 @@
     flex-grow: 1;
     justify-content: center;
     align-items: center;
+
+    --square-border-color: #2a2a2a;
 }
 
 .squares {
     display: flex;
     flex-wrap: wrap;
     flex-direction: column-reverse;
+    border: var(--square-border-color) solid .5px;
 }

@@ -12,6 +12,7 @@ const SquareView = props => {
   const [piece, setPiece] = useState();
   const [whiteAttention, setWhiteAttention] = useState();
   const [blackAttention, setBlackAttention] = useState();
+  const [isHighlightedSquare, setIsHighlightedSquare] = useState();
 
   /**
    * Sets the piece for this square. May be null.
@@ -21,6 +22,7 @@ const SquareView = props => {
     setPiece(square.piece);
     setWhiteAttention(square.attention[WHITE]);
     setBlackAttention(square.attention[BLACK]);
+    setIsHighlightedSquare(square.getIsHighlightedSquare());
   }, [col, row]);
 
   /**
@@ -44,6 +46,9 @@ const SquareView = props => {
   }, [col, row]);
 
   const color = useMemo(() => {
+    if(isHighlightedSquare){
+      return '#ffe73d';
+    }
     const lerp = (a, b, t) => {
       return a * (1 - t) + b * t;
     }
@@ -67,13 +72,20 @@ const SquareView = props => {
 
     return `rgb(${r}, ${g}, ${b})`;
 
-  }, [defaultColor, whiteAttention, blackAttention]);
+  }, [defaultColor, whiteAttention, blackAttention, isHighlightedSquare]);
+
+  const border = useMemo(() => {
+    return isHighlightedSquare ? 'inset 2px 2px 2px 0 yellow, inset -2px -2px 2px 0 yellow' : null;
+  }, [isHighlightedSquare]);
 
   const style = useMemo(() => {
     const s = {};
     s.backgroundColor = color;
+    if (border) {
+      //s.boxShadow = border;
+    }
     return s;
-  }, [color]);
+  }, [color, border]);
 
   const pieceElement = useMemo(() => {
     if (!piece) {

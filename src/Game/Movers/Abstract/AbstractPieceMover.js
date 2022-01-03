@@ -21,6 +21,8 @@ export default class AbstractPieceMover {
    * Moves the piece from one square to another square.
    */
   movePiece(srcSquare, targetSquare) {
+    srcSquare.setIsHighlightedSquare(true);
+    targetSquare.setIsHighlightedSquare(true);
     const piece = srcSquare.getPiece();
     if (!piece) {
       throw new Error("No piece on the current square.")

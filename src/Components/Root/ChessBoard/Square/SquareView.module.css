@@ -5,7 +5,8 @@
     align-items: center;
     justify-content: center;
     position: relative;
-    filter: hue-rotate(22deg);
+    filter: hue-rotate(326deg);
+    border: var(--square-border-color) .5px solid;
 }
 
 .index {

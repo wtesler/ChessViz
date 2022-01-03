@@ -10,6 +10,7 @@ export default class Square {
       [WHITE]: whiteAttention,
       [BLACK]: blackAttention
     };
+    this.isHighlightedSquare = false;
   }
 
   clear() {
@@ -55,5 +56,13 @@ export default class Square {
       [WHITE]: 0,
       [BLACK]: 0
     };
+  }
+
+  getIsHighlightedSquare(){
+    return this.isHighlightedSquare;
+  }
+
+  setIsHighlightedSquare(isHighlightedSquare){
+    this.isHighlightedSquare = isHighlightedSquare;
   }
 }

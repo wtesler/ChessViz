@@ -65,6 +65,7 @@ export default class GameManager extends AbstractDataManager {
 
     const currentMove = moves[this.currentMoveIndex];
     // console.log(currentMove);
+    this._resetHighlightedSquares();
     this.moveMaker.makeMove(currentMove);
     this.attentionUpdater.update(this.board);
     this.update();
@@ -116,5 +117,13 @@ export default class GameManager extends AbstractDataManager {
     this.board[5][row].setPiece(new Piece(BISHOP, player));
     this.board[6][row].setPiece(new Piece(KNIGHT, player));
     this.board[7][row].setPiece(new Piece(ROOK, player));
+  }
+
+  _resetHighlightedSquares(){
+    for (let col = 0; col < 8; col++) {
+      for (let row = 0; row < 8; row++) {
+        this.board[col][row].setIsHighlightedSquare(false);
+      }
+    }
   }
 }
