@@ -19,7 +19,7 @@ export default class PlayerGamesManager extends AbstractDataManager {
     this._resetParams();
 
     // HARD CODED. PLEASE REMOVE WHEN UNUSED.
-    this.fetch('hellowill89', '12', '2021');
+    this.fetch('hellowill89', '01', '2022');
   }
 
   /**

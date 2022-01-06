@@ -46,9 +46,10 @@ const SquareView = props => {
   }, [col, row]);
 
   const color = useMemo(() => {
-    if(isHighlightedSquare){
-      return '#ffe73d';
-    }
+    // if(isHighlightedSquare){
+    //   return '#ffe73d';
+    // }
+
     const lerp = (a, b, t) => {
       return a * (1 - t) + b * t;
     }
@@ -72,17 +73,22 @@ const SquareView = props => {
 
     return `rgb(${r}, ${g}, ${b})`;
 
-  }, [defaultColor, whiteAttention, blackAttention, isHighlightedSquare]);
+  }, [defaultColor, whiteAttention, blackAttention]);
 
   const border = useMemo(() => {
-    return isHighlightedSquare ? 'inset 2px 2px 2px 0 yellow, inset -2px -2px 2px 0 yellow' : null;
+    const l = 0;
+    const b = 11;
+    const s = 1;
+    const c = '#f4ff41';
+    const boxShadow = `inset ${l}px ${l}px ${b}px ${s}px ${c}, inset ${-l}px ${-l}px ${b}px ${s}px ${c}`;
+    return isHighlightedSquare ? boxShadow : null;
   }, [isHighlightedSquare]);
 
   const style = useMemo(() => {
     const s = {};
     s.backgroundColor = color;
     if (border) {
-      //s.boxShadow = border;
+      s.boxShadow = border;
     }
     return s;
   }, [color, border]);

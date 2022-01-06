@@ -21,7 +21,6 @@ export default class KnightMover extends AbstractSpecifierPieceMover {
 
   /**
    * Check the 8 possible squares that the knight can jump to. Add any candidate knights found.
-   * @return {*[]}
    */
   discoverKnightsAtPoints(board, player, targetCol, targetRow) {
     const squareInfos = [];
