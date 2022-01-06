@@ -77,9 +77,9 @@ const SquareView = props => {
 
   const border = useMemo(() => {
     const l = 0;
-    const b = 11;
+    const b = 20;
     const s = 1;
-    const c = '#f4ff41';
+    const c = '#f4ff4177';
     const boxShadow = `inset ${l}px ${l}px ${b}px ${s}px ${c}, inset ${-l}px ${-l}px ${b}px ${s}px ${c}`;
     return isHighlightedSquare ? boxShadow : null;
   }, [isHighlightedSquare]);

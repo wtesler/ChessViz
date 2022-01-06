@@ -7,7 +7,7 @@
     align-items: center;
 
     --square-border-color: #ffffff;
-    --square-border-radius: 1.5px;
+    --square-border-radius: 1px;
 }
 
 .squares {
