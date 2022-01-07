@@ -5,7 +5,7 @@
     align-items: center;
     justify-content: center;
     position: relative;
-    filter: hue-rotate(326deg);
+    filter: var(--attention-hue);
     border: var(--square-border-color) var(--square-border-radius) solid;
 }
 

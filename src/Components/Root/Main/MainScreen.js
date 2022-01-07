@@ -6,6 +6,7 @@ import MainModule from "./Module/MainModule";
 import ThemedBackground from "../Theme/Background/ThemedBackground";
 import ChessBoard from "../ChessBoard/ChessBoard";
 import GameControls from "../Game/GameControls";
+import AttentionBar from "../AttentionBar/AttentionBar";
 // import TestChessDotComApi from "../TestApi/TestChessDotComApi";
 
 const MainScreen = () => {
@@ -13,6 +14,7 @@ const MainScreen = () => {
     return (
       <div className={s.body}>
         <ChessBoard/>
+        <AttentionBar/>
         <GameControls/>
       </div>
     );

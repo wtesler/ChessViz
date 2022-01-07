@@ -1,0 +1,18 @@
+.outer{
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.white_attn{
+    height: 100%;
+    filter: var(--attention-hue);
+    background-color: red;
+}
+.black_attn{
+    height: 100%;
+    filter: var(--attention-hue);
+    background-color: blue;
+}
